@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Construction Business</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdf8f2;
+      color: #333;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+    .header-logo {
+      text-align: center;
+      background-color: #2c3e50;
+      padding: 30px 0 10px;
+    }
+    .header-logo img {
+      height: 80px;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    nav a:hover {
+      transform: scale(1.1);
+      color: #cfdce6;
+    }
+    section {
+      padding: 40px 30px;
+      max-width: 1000px;
+      margin: 40px auto;
+      border-radius: 0;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .hero {
+      background-color: #f0eae2;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    section p,
+    section ul {
+      font-size: 1rem;
+      color: #444;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .gallery-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .gallery-track {
+      display: flex;
+      animation: loopGallery 30s linear infinite;
+    }
+    .gallery-track:hover {
+      animation-play-state: paused;
+    }
+    .gallery-card {
+      position: relative;
+      flex: 0 0 auto;
+      width: 300px;
+      height: 200px;
+      margin-right: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-card:hover .gallery-overlay {
+      opacity: 1;
+    }
+    @keyframes loopGallery {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .back-to-top {
+      text-align: center;
+      margin: 40px auto;
+    }
+    .back-to-top a {
+      background-color: #999;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 0;
+      transition: background-color 0.3s;
+    }
+    .back-to-top a:hover {
+      background-color: #777;
+    }
+    .map-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body id="top">
+  <div class="header-logo">
+    <img src="your-logo.png" alt="Your Logo">
+  </div>
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>Welcome to Your Construction Business</h1>
+    <p>"Insert a short, compelling slogan here"</p>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Edit this to include your years of experience, location, and what makes your business unique.</p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Custom Home Builds</li>
+      <li>Remodels & Renovations</li>
+      <li>Roofing</li>
+      <li>Framing & Drywall</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Project Gallery</h2>
+    <div class="gallery-container">
+      <div class="gallery-track">
+        <div class="gallery-card" onclick="location.href='#project1';">
+          <img src="image1.jpg" alt="Project 1">
+          <div class="gallery-overlay">Kitchen Remodel</div>
+        </div>
+        <div class="gallery-card" onclick="location.href='#project2';">
+          <img src="image2.jpg" alt="Project 2">
+          <div class="gallery-overlay">Roofing Job</div>
+        </div>
+        <div class="gallery-card" onclick="location.href='#project3';">
+          <img src="image3.jpg" alt="Project 3">
+          <div class="gallery-overlay">Deck Installation</div>
+        </div>
+        <div class="gallery-card" onclick="location.href='#project1';">
+          <img src="image1.jpg" alt="Project 1 duplicate">
+          <div class="gallery-overlay">Kitchen Remodel</div>
+        </div>
+        <div class="gallery-card" onclick="location.href='#project2';">
+          <img src="image2.jpg" alt="Project 2 duplicate">
+          <div class="gallery-overlay">Roofing Job</div>
+        </div>
+        <div class="gallery-card" onclick="location.href='#project3';">
+          <img src="image3.jpg" alt="Project 3 duplicate">
+          <div class="gallery-overlay">Deck Installation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="project1">
+    <h2>Kitchen Remodel</h2>
+    <p>Description or additional content goes here.</p>
+  </section>
+
+  <section id="project2">
+    <h2>Roofing Job</h2>
+    <p>Description or additional content goes here.</p>
+  </section>
+
+  <section id="project3">
+    <h2>Deck Installation</h2>
+    <p>Description or additional content goes here.</p>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <p>“Amazing craftsmanship and attention to detail!” – J.D., Santa Cruz</p>
+    <p>“Got the job done on time and under budget.” – M.P., San Jose</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: (123) 456-7890<br>
+       Email: your@email.com<br>
+       Based in: Your City, State</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.1631956340145!2d-121.89115578437427!3d37.33820797984114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fccb8e4c167c1%3A0x4f55d2b203e97da!2sSan%20Jose%2C%20CA!5e0!3m2!1sen!2sus!4v1617030412134!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div class="back-to-top">
+    <a href="#top">↑ Back to Top</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Your Construction Business. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
