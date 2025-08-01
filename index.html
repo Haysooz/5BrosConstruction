@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Construction Business</title>
+  <title>5 Brothers Best Construction</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <style>
     html, body {
@@ -25,13 +25,14 @@
       height: 100%;
       object-fit: contain;
       display: block;
-      background-color: #323592;
+      background-color: #d3d4de;
+      ;
     }
     header {
       background-color: #323592;
       color: white;
       padding: 10px 20px;
-      position: fixed;
+      position: fixed ;
       top: 0;
       left: 0;
       right: 0;
@@ -114,8 +115,8 @@
     .gallery-card {
       position: relative;
       flex: 0 0 auto;
-      width: 300px;
-      height: 200px;
+      width: 600px;
+      height: 400px;
       margin-right: 20px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -162,14 +163,10 @@
     }
     .project-gallery img {
       width: 100%;
-      height: 150px;
+      height: 450px;
       object-fit: cover;
       border-radius: 5px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .map-container {
-      margin-top: 20px;
-      text-align: center;
     }
     .map-container iframe {
       width: 100%;
@@ -207,7 +204,78 @@
         padding: 4px 6px;
       }
     }
+        .contact-flex {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.map-container {
+  flex: 1 1 350px;
+  min-width: 280px;
+  max-width: 500px;
+}
+.contact-form {
+  flex: 1 1 350px;
+  min-width: 280px;
+  max-width: 400px;
+  background: #e1e1f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(50,53,146,0.08);
+}
+#contact {
+  display: block;
+  height: auto;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+@media (max-width: 900px) {
+  .contact-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .map-container, .contact-form {
+    max-width: 100%;
+  }
+}  
+
+#contact-info {
+  text-align: center;
+  color: #595fa6;
+}
+
+  #contact-info h2 {
+    margin-bottom: 10px;
+  }
+
+  #contact-info p {
+    margin: 5px 0;
+  }
+
+  #services ul {
+  font-size: 2em;}
+  
+  #about {
+      text-align: center;
+    }
+  #about p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  #hero p {
+      font-size: 1.4em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
   </style>
+
+
   <script>
     window.addEventListener('scroll', () => {
       document.body.classList.toggle('scrolled', window.scrollY > window.innerHeight);
@@ -216,7 +284,7 @@
 </head>
 <body id="top">
   <div class="header-logo">
-    <img src="logo.png" alt="Your Logo">
+    <img src="logoWhite.PNG" alt="Your Logo">
   </div>
   <header>
     <nav>
@@ -229,18 +297,26 @@
   </header>
   <main>
     <section class="hero">
-      <h1>Welcome to Your Construction Business</h1>
-      <p>"Insert a short, compelling slogan here"</p>
+      <h1>5 Brothers Best Construction</h1>
+      <p>"Not Just Better, We're The Best"<br> ¡Hablamos Español!</p>
     </section>
     <section id="about">
       <h2>About Us</h2>
-      <p>Edit this to include your years of experience, location, and what makes your business unique.</p>
+      <p>Nestled in the heart of Silicon Valley, we serve your home building needs with 20 years of experience. 
+      Whether you need a window installed, a kitchen remodel, or a shaded Pergola, we labor with dedication, care, and efficiency.
+      Check out our projects pictured below, and when you feel confident, shoot us an email at 5brosbestcon@gmail.com with your idea.
+      We believe your home building idea can be brought to life in the BEST way possible.  </p>
     </section>
     <section id="services">
       <h2>Our Services</h2>
+      <p>Include but not limited to:</p>
       <ul>
         <li>Custom Home Builds</li>
+            <div style="margin-left: 1em; color: #666;">
+              <p>New builds, additions, adu</p>
+            </div>
         <li>Remodels & Renovations</li>
+
         <li>Roofing</li>
         <li>Framing & Drywall</li>
       </ul>
@@ -250,57 +326,57 @@
       <div class="gallery-container">
         <div class="gallery-track">
           <div class="gallery-card" onclick="location.href='#project1';">
-            <img src="img1.jpg" alt="Project 1">
-            <div class="gallery-overlay">Kitchen Remodel</div>
+            <img src="framing4.JPG" alt="Project 1">
+            <div class="gallery-overlay">Framing</div>
           </div>
           <div class="gallery-card" onclick="location.href='#project2';">
-            <img src="img2.jpg" alt="Project 2">
-            <div class="gallery-overlay">Roofing Job</div>
+            <img src="finish5.jpg" alt="Project 2">
+            <div class="gallery-overlay">Finish</div>
           </div>
           <div class="gallery-card" onclick="location.href='#project3';">
-            <img src="img3.jpg" alt="Project 3">
-            <div class="gallery-overlay">Deck Installation</div>
+            <img src="finish4.1.jpg" alt="Project 3">
+            <div class="gallery-overlay">Finish</div>
           </div>
           <div class="gallery-card" onclick="location.href='#project1';">
-            <img src="img1.jpg" alt="Repeat 1">
-            <div class="gallery-overlay">Kitchen Remodel</div>
+            <img src="framing3.JPG" alt="Repeat 1">
+            <div class="gallery-overlay">Framing</div>
           </div>
           <div class="gallery-card" onclick="location.href='#project2';">
-            <img src="img2.jpg" alt="Repeat 2">
-            <div class="gallery-overlay">Roofing Job</div>
+            <img src="finish2.jpg" alt="Repeat 2">
+            <div class="gallery-overlay">Finish</div>
           </div>
           <div class="gallery-card" onclick="location.href='#project3';">
-            <img src="img3.jpg" alt="Repeat 3">
-            <div class="gallery-overlay">Deck Installation</div>
+            <img src="finish6.PNG" alt="Repeat 3">
+            <div class="gallery-overlay">Finish</div>
           </div>
         </div>
       </div>
     </section>
     <section id="project1">
-      <h2>Kitchen Remodel</h2>
+      <h2>Framing</h2>
       <p>This project included a full redesign of the kitchen space including cabinetry, flooring, and lighting.</p>
       <div class="project-gallery">
-        <img src="img1.jpg" alt="Kitchen 1">
-        <img src="img1.jpg" alt="Kitchen 2">
-        <img src="img1.jpg" alt="Kitchen 3">
+        <img src="framing4.JPG" alt="Kitchen 1">
+        <img src="framing1.jpg" alt="Kitchen 2">
+        <img src="framing2.jpeg" alt="Kitchen 3">
       </div>
     </section>
     <section id="project2">
-      <h2>Roofing Job</h2>
+      <h2>Finish</h2>
       <p>Complete tear-off and replacement with composite shingles designed for durability and aesthetics.</p>
       <div class="project-gallery">
-        <img src="img2.jpg" alt="Roofing 1">
-        <img src="img2.jpg" alt="Roofing 2">
-        <img src="img2.jpg" alt="Roofing 3">
+        <img src="finish5.jpg" alt="Roofing 1">
+        <img src="finish4.1.jpg" alt="Roofing 2">
+        <img src="finish6.PNG" alt="Roofing 3">
       </div>
     </section>
     <section id="project3">
-      <h2>Deck Installation</h2>
+      <h2>Finish</h2>
       <p>Custom backyard deck with treated wood, built-in lighting, and railing for style and safety.</p>
       <div class="project-gallery">
-        <img src="img3.jpg" alt="Deck 1">
-        <img src="img3.jpg" alt="Deck 2">
-        <img src="img3.jpg" alt="Deck 3">
+        <img src="finish1.jpg" alt="Deck 1">
+        <img src="finish2.jpg" alt="Deck 2">
+        <img src="finish3.jpg" alt="Deck 3">
       </div>
     </section>
     <section id="testimonials">
@@ -309,20 +385,65 @@
       <p>“Got the job done on time and under budget.” – M.P., San Jose</p>
     </section>
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Phone: (123) 456-7890<br>
-         Email: your@email.com<br>
-         Based in: Your City, State</p>
-      <div class="map-container">
-        <iframe src="https://maps.google.com/maps?q=San%20Jose%20CA&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+      <div id="contact-info">
+        <h2>Contact Us</h2>
+        <p>Phone: (408) 859-2320<br>
+         Email: 5brosbestcon@gmail.com<br>
+         Based in: San Jose, CA</p>
+        <p>We are available for consultations and project quotes. Please fill out the form below or contact us directly.</p>
       </div>
+  <div class="contact-flex">
+    <div class="map-container">
+      <iframe src="https://maps.google.com/maps?q=San%20Jose%20CA&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <form action="https://formspree.io/f/xzzvvoye" method="POST" class="contact-form">
+      <h3>Request a Quote / Contact Form</h3>
+      
+      <label for="service">Service Requested:</label><br>
+      <input type="text" id="service" name="service" required><br><br>
+
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+      
+      <label for="phone">Phone:</label><br>
+      <input type="phone" id="phone" name="phone" required><br><br>
+
+      <label for="city">City:</label><br>
+      <input type="text" id="city" name="city" required><br><br>
+
+      <label for="zipcode">Zip Code:</label><br>
+      <input type="text" id="zipcode" name="zipcode" required><br><br>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
     </section>
     <div class="back-to-top">
       <a href="#top">↑ Back to Top</a>
     </div>
   </main>
   <footer>
-    <p>&copy; 2025 Your Construction Business. All rights reserved.</p>
+    <p>&copy; 5 Brothers Best Construction. All rights reserved.</p>
   </footer>
+  <script>
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  fetch(form.action, {
+    method: form.method,
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(response) {
+    if (response.ok) {
+      form.innerHTML = "<h3>Thank you!</h3><p>Your message has been sent. We'll get back to you soon.</p>";
+    } else {
+      form.innerHTML = "<h3>Oop s!</h3><p>Something went wrong. Please try again or email us directly.</p>";
+    }
+  });
+});
+</script>
 </body>
 </html>
