@@ -1,449 +1,812 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5 Brothers Best Construction</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="D:\5BrosConst\5brosweb\assets\Logos\favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fdf8f2;
-      color: #333;
-      height: 100%;
-      scroll-behavior: smooth;
+    :root{
+      /* =========================
+         TWEAKABLE THEME TOKENS
+         - Adjust tint, borders, and animation here
+         ========================= */
+      --primary:#323592; --primary-600:#272977; --ink:#0f172a; --muted:#334155;
+      --card:rgba(255,255,255,.78); --shadow:0 14px 38px rgba(16,24,40,.12); --radius:16px;
+      --band: rgba(17,17,17,.82);
+      /* Tint for header + quote form */
+      --tint-top: rgba(50,53,146,.18);
+      --tint-bottom: rgba(50,53,146,.12);
+      --tint-border: rgba(50,53,146,.25);
+      /* Gallery grid */
+      --grid-min: 280px; /* TWEAK: minimum tile width */
+      /* Animations */
+      --card-stagger: 80ms; /* TWEAK: delay between tiles */
     }
-    .header-logo {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .header-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      background-color: #d3d4de;
-      ;
-    }
-    header {
-      background-color: #323592;
-      color: white;
-      padding: 10px 20px;
-      position: fixed ;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-    body.scrolled header {
-      padding: 2px 8px;
-      width: 75%;
-      left: 12.5%;
-      right: 12.5%;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 5px 10px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
-    nav a:hover {
-      transform: scale(1.1);
-      color: #cfdce6;
-    }
-    section {
-      height: 100vh;
-      padding: 60px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: #ffffff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      scroll-snap-align: start;
-    }
-    .hero {
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    section h2 {
-      font-size: 1.75rem;
-      margin-bottom: 20px;
-      color: #222;
-    }
-    section p,
-    section ul {
-      font-size: 1rem;
-      color: #444;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .gallery-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
-    .gallery-track {
-      display: flex;
-      width: max-content;
-      animation: scrollGallery 30s linear infinite;
-    }
-    .gallery-track:hover {
-      animation-play-state: paused;
-    }
-    .gallery-card {
-      position: relative;
-      flex: 0 0 auto;
-      width: 600px;
-      height: 400px;
-      margin-right: 20px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      font-size: 1rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .gallery-card:hover .gallery-overlay {
-      opacity: 1;
-    }
-    .gallery-card:hover {
-      z-index: 10;
-    }
-    @keyframes scrollGallery {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-    .project-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 900px;
-    }
-    .project-gallery img {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      border-radius: 5px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .map-container iframe {
-      width: 100%;
-      height: 300px;
-      border: 0;
-    }
-    .back-to-top {
-      text-align: center;
-      margin: 40px auto;
-    }
-    .back-to-top a {
-      background-color: #999;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    .back-to-top a:hover {
-      background-color: #777;
-    }
-    footer {
-      background-color: #323592;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    @media (max-width: 600px) {
-      .header-logo img {
-        object-fit: contain;
-      }
-      .project-gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      header {
-        padding: 4px 6px;
-      }
-    }
-        .contact-flex {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.map-container {
-  flex: 1 1 350px;
-  min-width: 280px;
-  max-width: 500px;
-}
-.contact-form {
-  flex: 1 1 350px;
-  min-width: 280px;
-  max-width: 400px;
-  background: #e1e1f8;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(50,53,146,0.08);
-}
-#contact {
-  display: block;
-  height: auto;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-@media (max-width: 900px) {
-  .contact-flex {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .map-container, .contact-form {
-    max-width: 100%;
-  }
-}  
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;color:var(--muted);background:#fff;scroll-behavior:smooth;font-size:16px;line-height:1.65}
+    h1,h2,h3,h4,h5{font-family:'Playfair Display',serif;color:var(--ink)}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{color:var(--primary-600)}
 
-#contact-info {
-  text-align: center;
-  color: #595fa6;
+    /* Tinted fixed header (always expanded) */
+    header{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1200px,92%);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:18px;background:linear-gradient(180deg, var(--tint-top), var(--tint-bottom));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);border:1px solid var(--tint-border);box-shadow:0 10px 30px rgba(16,24,40,.18);z-index:1000;overflow:hidden}
+    .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:60px;width:auto}
+    nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0;align-items:center}
+    nav a{color:#f8fafc;font-weight:700;opacity:.98;padding:10px 14px;border-radius:999px;display:inline-flex;align-items:center;line-height:1}
+    nav a:hover{opacity:1;background:rgba(255,255,255,.18)}
+    .nav-right{display:flex;align-items:center;gap:14px}
+    .nav-right .social{display:flex;gap:12px}
+    .nav-right .social a{color:#f8fafc;opacity:.9;font-size:1.15rem}
+    .nav-right .social a:hover{opacity:1}
+
+    main{padding-top:100px}
+    section{padding:64px 20px}
+    .container{width:min(1200px,92%);margin-inline:auto}
+
+    /* Hero */
+    .header-logo{width:100vw;height:100vh;overflow:hidden}
+    .header-logo img{width:100%;height:100%;object-fit:contain;display:block;background:#d3d4de}
+
+    /* About + Services */
+    #about{background:radial-gradient(70rem 70rem at -10% 0%, rgba(39,41,119,.06), transparent 55%),radial-gradient(55rem 55rem at 110% 10%, rgba(50,53,146,.05), transparent 60%),linear-gradient(180deg, #fafafa 0%, #ffffff 60%, #f7f7fb 100%)}
+    .about-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch}
+    @media (max-width:960px){.about-wrap{grid-template-columns:1fr}}
+    .glass{position:relative;border-radius:var(--radius);background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+    .glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(170deg, rgba(255,255,255,.55), rgba(255,255,255,.15)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none}
+    .about-card{padding:26px}
+    .about-card h1{margin:0 0 8px;font-size:clamp(2rem,3.4vw,3.2rem)}
+    .about-card p{margin:0 0 12px;line-height:1.75;font-weight:500}
+    .owner{display:flex;gap:14px;align-items:center;margin-top:16px}
+    .owner img{width:120px;height:120px;border-radius:50%;object-fit:cover}
+    .services-card{padding:22px}
+    .services-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    @media (max-width:620px){.services-list{grid-template-columns:1fr}}
+    .service{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:12px;background:#fff;border:1px solid #e5e7eb}
+    .service i{color:var(--primary)}
+
+    /* Gallery */
+    #gallery{background:radial-gradient(70rem 70rem at -10% 0%, rgba(39,41,119,.06), transparent 55%),radial-gradient(55rem 55rem at 110% 10%, rgba(50,53,146,.05), transparent 60%),linear-gradient(180deg, #fafafa 0%, #ffffff 60%, #f7f7fb 100%)}
+    .section-title{text-align:center;margin:8px 0 24px}
+    .section-title h2{margin:0 0 6px;font-size:2.2rem}
+
+    /* Grid that auto-expands tiles as items are removed */
+    .masonry{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--grid-min),1fr));gap:18px} /* TWEAK: use --grid-min to control tile size */
+    .card{border-radius:16px;overflow:hidden;background:#fff;box-shadow:var(--shadow);position:relative;cursor:pointer;opacity:1;transform:none;transition:opacity .4s ease, transform .4s ease}
+.card.will-animate{opacity:0;transform:scale(.96)}
+.card.will-animate.show{opacity:1;transform:scale(1)}
+@media (prefers-reduced-motion: reduce){.card,.card.will-animate{transition:none}}
+    .card.show{opacity:1;transform:scale(1)}
+    @media (prefers-reduced-motion: reduce){.card{transition:none}}
+    .card::before{content:"";display:block;aspect-ratio:16/9}
+    .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+    .card:hover img{transform:scale(1.04)}
+    .card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:var(--band);backdrop-filter:blur(8px);z-index:1;border-bottom-left-radius:16px;border-bottom-right-radius:16px}
+    .overlay{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:6px;padding:14px 16px;color:#fff;z-index:2;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+    .overlay h3{margin:0;font-size:1.08rem;line-height:1.2;font-weight:800;color:#fff}
+    .overlay p{margin:0;font-size:.95rem;color:#e5e7eb;font-weight:600}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:#000;display:none;z-index:1000}
+    .lightbox[aria-hidden="false"]{display:block}
+    body.lb-open{overflow:hidden}
+    .lb-top{position:absolute;inset:0 0 auto 0;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:linear-gradient(180deg,rgba(0,0,0,.96),rgba(0,0,0,.55));color:#f8fafc;z-index:5;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+    .lb-title{display:flex;gap:12px;align-items:center}
+    .lb-title h4{margin:0;font-size:1.06rem;color:#f8fafc;letter-spacing:.2px;text-shadow:0 1px 2px rgba(0,0,0,.65)}
+    .lb-count{opacity:1;color:#f8fafc;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.65)}
+    .lb-actions{display:flex;gap:8px}
+    .icon-btn{border:none;background:rgba(255,255,255,.1);color:#f8fafc;cursor:pointer;padding:10px 12px;border-radius:12px}
+    .icon-btn:hover{background:rgba(255,255,255,.18)}
+    .lb-stage{position:absolute;inset:0;overflow:hidden}
+    .slides{position:absolute;inset:0}
+    .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .35s ease}
+    .slide.active{opacity:1}
+    .slide img{width:100%;height:100%;object-fit:cover;object-position:center center}
+    .lightbox.fit-contain .slide img{object-fit:contain}
+    .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);border:none;background:rgba(0,0,0,.45);color:#fff;height:56px;width:56px;border-radius:50%;cursor:pointer;display:grid;place-items:center;z-index:5}
+    .nav-arrow:hover{background:rgba(0,0,0,.7)}
+    .nav-prev{left:18px}
+    .nav-next{right:18px}
+    .lb-dots{display:flex;gap:6px;justify-content:center;align-items:center;padding:10px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer}
+    .dot.active{background:#fff}
+    .thumbs{display:flex;gap:10px;overflow:auto;padding:10px 14px;background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.6));scrollbar-width:thin}
+    .thumb{flex:0 0 auto;width:110px;height:74px;border-radius:10px;overflow:hidden;opacity:.7;cursor:pointer;border:2px solid transparent}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .thumb.active{opacity:1;border-color:#fff}
+    .caption{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;max-width:min(900px,92%);text-align:center;color:#fff;font-size:1rem;text-shadow:none;padding:8px 12px;background:rgba(0,0,0,.72);border-radius:10px}
+/* place near your existing .caption rule */
+.caption { pointer-events: none; }
+
+    /* Contact */
+    #contact .contact-flex{display:flex;gap:30px;justify-content:center;align-items:flex-start;flex-wrap:wrap;margin-top:20px}
+    #contact .contact-form{flex:1 1 780px;min-width:min(760px,100%);max-width:900px;background:linear-gradient(180deg, var(--tint-top), var(--tint-bottom));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);border:1px solid var(--tint-border);padding:24px;border-radius:16px;box-shadow:0 10px 30px rgba(16,24,40,.18)}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .form-grid .full{grid-column:1/-1}
+    #contact label{font-weight:700;color:var(--ink);display:block;margin:4px 2px}
+    #contact input,#contact textarea,#contact select{width:100%;padding:12px 14px;border-radius:12px;border:2px solid #e5e7eb;background:#fff;font:inherit}
+    #contact textarea{min-height:140px}
+    .btn{display:inline-block;background:var(--primary);border:2px solid var(--primary);color:#fff;font-weight:700;padding:12px 18px;border-radius:14px}
+    .btn:hover{background:var(--primary-600);border-color:var(--primary-600)}
+    footer{background:var(--primary);color:#fff;text-align:center;padding:20px;margin-top:30px}
+
+    /* Lightbox should size video like images */
+.slide video { width:100%; height:100%; object-fit:cover; }
+.lightbox.fit-contain .slide video { object-fit:contain; }
+
+/* “Play” badge on video tiles */
+.card .play-badge{
+  position:absolute; right:10px; bottom:10px; z-index:3;
+  background:rgba(0,0,0,.6); color:#fff; border-radius:999px;
+  padding:6px 10px; font-size:.85rem; font-weight:700;
+  display:inline-flex; align-items:center; gap:6px;
 }
+.card .play-badge i{ font-size:.9rem; }
 
-  #contact-info h2 {
-    margin-bottom: 10px;
-  }
+#plans-list { display:flex; flex-direction:column; gap:6px }
+#plans-list .file { padding:8px 10px; border:1px solid #e5e7eb; border-radius:10px; background:#fff }
+#plans-list .bad  { border-color:#ef4444; background:#fff5f5 }
 
-  #contact-info p {
-    margin: 5px 0;
-  }
-
-  #services ul {
-  font-size: 2em;}
-  
-  #about {
-      text-align: center;
-    }
-  #about p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  #hero p {
-      font-size: 1.4em;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-    }
   </style>
-
-
-  <script>
-    window.addEventListener('scroll', () => {
-      document.body.classList.toggle('scrolled', window.scrollY > window.innerHeight);
-    });
-  </script>
 </head>
 <body id="top">
+  <!-- Hero -->
   <div class="header-logo">
-    <img src="logoWhite.PNG" alt="Your Logo">
+    <img src="assets/Logos/logoWhite.PNG" alt="5 Brothers Best Construction logo" />
   </div>
-  <header>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <h1>5 Brothers Best Construction</h1>
-      <p>"Not Just Better, We're The Best"<br> ¡Hablamos Español!</p>
-    </section>
-    <section id="about">
-      <h2>About Us</h2>
-      <p>Nestled in the heart of Silicon Valley, we serve your home building needs with 20 years of experience. 
-      Whether you need a window installed, a kitchen remodel, or a shaded Pergola, we labor with dedication, care, and efficiency.
-      Check out our projects pictured below, and when you feel confident, shoot us an email at 5brosbestcon@gmail.com with your idea.
-      We believe your home building idea can be brought to life in the BEST way possible.  </p>
-    </section>
-    <section id="services">
-      <h2>Our Services</h2>
-      <p>Include but not limited to:</p>
-      <ul>
-        <li>Custom Home Builds</li>
-            <div style="margin-left: 1em; color: #666;">
-              <p>New builds, additions, adu</p>
-            </div>
-        <li>Remodels & Renovations</li>
 
-        <li>Roofing</li>
-        <li>Framing & Drywall</li>
-      </ul>
-    </section>
-    <section id="gallery">
-      <h2>Project Gallery</h2>
-      <div class="gallery-container">
-        <div class="gallery-track">
-          <div class="gallery-card" onclick="location.href='#project1';">
-            <img src="framing4.JPG" alt="Project 1">
-            <div class="gallery-overlay">Framing</div>
-          </div>
-          <div class="gallery-card" onclick="location.href='#project2';">
-            <img src="finish5.jpg" alt="Project 2">
-            <div class="gallery-overlay">Finish</div>
-          </div>
-          <div class="gallery-card" onclick="location.href='#project3';">
-            <img src="finish4.1.jpg" alt="Project 3">
-            <div class="gallery-overlay">Finish</div>
-          </div>
-          <div class="gallery-card" onclick="location.href='#project1';">
-            <img src="framing3.JPG" alt="Repeat 1">
-            <div class="gallery-overlay">Framing</div>
-          </div>
-          <div class="gallery-card" onclick="location.href='#project2';">
-            <img src="finish2.jpg" alt="Repeat 2">
-            <div class="gallery-overlay">Finish</div>
-          </div>
-          <div class="gallery-card" onclick="location.href='#project3';">
-            <img src="finish6.PNG" alt="Repeat 3">
-            <div class="gallery-overlay">Finish</div>
-          </div>
+  <!-- Tinted Header -->
+  <header id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Home"><img src="assets\Logos\logoWhite - Copy.PNG" alt="Logo" /></a>
+      <nav aria-label="Primary">
+        <!-- TWEAK: Add/remove nav links below -->
+        <ul>
+          <li><a href="#about">About & Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <div class="social" aria-label="Social links">
+          <!-- TWEAK: Replace hrefs with real profiles -->
+          <a href="https://www.tiktok.com/@5brosbestcon" aria-label="Tiktok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://www.yelp.com/biz/5-brothers-best-construction-san-jose" aria-label="Yelp" target="_blank" rel="noopener"><i class="fa-brands fa-yelp"></i></a>
+          <a href="https://www.bizprofile.net/ca/san-jose/5-brothers-best-construction" aria-label="bizprofile" target="_blank" rel="noopener"><i class="fa-solid fa-check"></i></a>        
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ABOUT + SERVICES -->
+    <section id="about">
+      <div class="container"> 
+        <div class="about-wrap">
+          <article class="glass about-card">
+            <h1>"Not Just Better, But The Best"</h1>
+            <p>Based in the SF Bay Area with over 20 years of hands-on experience, we build and improve residential homes with care, efficiency, and clear communication. From window installs to full custom additions, we deliver work that lasts.</p>
+            <p>If you need a contractor or subcontractor for your project? Click our Contact tab or Email <a href="mailto:5brosbestcon@gmail.com">5brosbestcon@gmail.com</a> or call (408) 859-2320.</p>
+            <div class="owner">
+              <img src='assets/Logos/IMG_3736.png' alt="Owner portrait" />
+              <div>
+                <h3 style="margin:0 0 4px">Meet JOSE QUIROZ - OWNER</h3>
+                <p style="margin:0">Owner-led, bilingual (¡Hablamos Español!), and on site from first walk-through to final punch list. Gracias!</p>
+              </div>
+            </div>
+          </article>
+          <aside class="glass services-card">
+            <h2 style="margin-top:0">NEW | PRE-EXISTING | REMODEL</h2>
+            <div class="services-list">
+              <div class="service"><i class="fa-solid fa-house fa-lg"></i><div><strong>Excavation</strong><br/><small>Any size dig for basement, slab, traditional, etc.</small></div></div>
+              <div class="service"><i class="fa-solid fa-kitchen-set fa-lg"></i><div><strong>Foundation</strong><br/><small>After the dig, we'll handle anything to get your foundation set.</small></div></div>
+              <div class="service"><i class="fa-solid fa-helmet-safety fa-lg"></i><div><strong>Framing</strong><br/><small>From the ground to the roof, we'll efficiently cut and nail every piece of wood.</small></div></div>
+              <div class="service"><i class="fa-solid fa-water fa-lg"></i><div><strong>Other</strong><br/><small>Small projects? Handyman? Gazebo? Window or Door Install? Let us know! </small></div></div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
-    <section id="project1">
-      <h2>Framing</h2>
-      <p>This project included a full redesign of the kitchen space including cabinetry, flooring, and lighting.</p>
-      <div class="project-gallery">
-        <img src="framing4.JPG" alt="Kitchen 1">
-        <img src="framing1.jpg" alt="Kitchen 2">
-        <img src="framing2.jpeg" alt="Kitchen 3">
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>Project Gallery</h2>
+          <p>Click any photo to view a full-screen gallery. Use arrows or thumbnails to browse.</p>
+        </div>
+        <div class="categories-nav" role="tablist" aria-label="Project categories" style="display:flex;justify-content:center;gap:10px;margin:18px 0 28px;flex-wrap:wrap">
+          <button class="category-btn active" data-category="all" role="tab" aria-selected="true" style="border:2px solid var(--ink);background:#fff;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer">All Projects</button>
+          <button class="category-btn" data-category="excavation" role="tab" style="border:2px solid var(--ink);background:#fff;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer">Excavation</button>
+          <button class="category-btn" data-category="foundation" role="tab" style="border:2px solid var(--ink);background:#fff;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer">Foundation</button>
+          <button class="category-btn" data-category="framing" role="tab" style="border:2px solid var(--ink);background:#fff;color:var(--ink);padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer">Framing</button>
+        </div>
+        <div id="grid" class="masonry" aria-live="polite"></div>
       </div>
     </section>
-    <section id="project2">
-      <h2>Finish</h2>
-      <p>Complete tear-off and replacement with composite shingles designed for durability and aesthetics.</p>
-      <div class="project-gallery">
-        <img src="finish5.jpg" alt="Roofing 1">
-        <img src="finish4.1.jpg" alt="Roofing 2">
-        <img src="finish6.PNG" alt="Roofing 3">
-      </div>
-    </section>
-    <section id="project3">
-      <h2>Finish</h2>
-      <p>Custom backyard deck with treated wood, built-in lighting, and railing for style and safety.</p>
-      <div class="project-gallery">
-        <img src="finish1.jpg" alt="Deck 1">
-        <img src="finish2.jpg" alt="Deck 2">
-        <img src="finish3.jpg" alt="Deck 3">
-      </div>
-    </section>
-    <section id="testimonials">
-      <h2>Testimonials</h2>
-      <p>“Amazing craftsmanship and attention to detail!” – J.D., Santa Cruz</p>
-      <p>“Got the job done on time and under budget.” – M.P., San Jose</p>
-    </section>
+
+    <!-- CONTACT (Tinted form) -->
     <section id="contact">
-      <div id="contact-info">
-        <h2>Contact Us</h2>
-        <p>Phone: (408) 859-2320<br>
-         Email: 5brosbestcon@gmail.com<br>
-         Based in: San Jose, CA</p>
-        <p>We are available for consultations and project quotes. Please fill out the form below or contact us directly.</p>
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>We’re available for consultations and quotes on a contractor or subcontractor basis. Send a message with blueprints if possible, and we’ll respond promptly. We value your time.</p>
+        </div>
+        <div class="contact-flex">
+          <form action="https://formspree.io/f/xzzvvoye" method="POST" class="contact-form" enctype="multipart/form-data">
+            <h3>Request a Quote</h3>
+            <div class="form-grid">
+              <div class="full">
+                <label for="service">Service Requested</label>
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option>Excavation</option>
+                  <option>Foundation</option>
+                  <option>Framing</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+              <div>
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" required />
+              </div>
+              <div>
+                <label for="zipcode">Zip Code</label>
+                <input type="text" id="zipcode" name="zipcode" required />
+              </div>
+              <div>
+                <label for="budget">Rough Budget</label>
+                <select id="budget" name="budget" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option>Under $10,000</option>
+                  <option>$10,000 – $50,000</option>
+                  <option>$50,000 – $100,000</option>
+                  <option>$100,000 – $250,000</option>
+                  <option> +$250,000</option>
+                </select>
+              </div>
+              <div class="full">
+              <div class="full">
+                <label for="plans">Upload Plans (PDF)</label>
+                  <input type="file"
+                    id="plans"
+                    name="attachments"
+                    accept="application/pdf"
+                    multiple />
+                  <small id="plans-help" style="display:block;margin-top:6px;opacity:.85">
+                    PDFs only. Thank you.
+                  </small>
+              <div id="plans-list" style="margin-top:8px;font-size:.95rem;"></div>
+</div>
+
+                <label for="details">Project Details</label>
+                <textarea id="details" name="details" placeholder="Tell us about your scope, timing, and any plans or photos you can share."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn" style="margin-top:14px">Submit</button>
+          </form>
+        </div>
       </div>
-  <div class="contact-flex">
-    <div class="map-container">
-      <iframe src="https://maps.google.com/maps?q=San%20Jose%20CA&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
-    </div>
-    <form action="https://formspree.io/f/xzzvvoye" method="POST" class="contact-form">
-      <h3>Request a Quote / Contact Form</h3>
-      
-      <label for="service">Service Requested:</label><br>
-      <input type="text" id="service" name="service" required><br><br>
-
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br><br>
-
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required><br><br>
-      
-      <label for="phone">Phone:</label><br>
-      <input type="phone" id="phone" name="phone" required><br><br>
-
-      <label for="city">City:</label><br>
-      <input type="text" id="city" name="city" required><br><br>
-
-      <label for="zipcode">Zip Code:</label><br>
-      <input type="text" id="zipcode" name="zipcode" required><br><br>
-      
-      <button type="submit">Submit</button>
-    </form>
-  </div>
     </section>
-    <div class="back-to-top">
-      <a href="#top">↑ Back to Top</a>
-    </div>
   </main>
+<a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
   <footer>
-    <p>&copy; 5 Brothers Best Construction. All rights reserved.</p>
+    <p>© 5 Brothers Best Construction. LIC #1124900 Check our license on <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx" style="color:white; text-decoration: underline;">CSLB</a>. All rights reserved.</p>
   </footer>
-  <script>
-document.querySelector('.contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var form = this;
-  fetch(form.action, {
-    method: form.method,
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  }).then(function(response) {
-    if (response.ok) {
-      form.innerHTML = "<h3>Thank you!</h3><p>Your message has been sent. We'll get back to you soon.</p>";
-    } else {
-      form.innerHTML = "<h3>Oop s!</h3><p>Something went wrong. Please try again or email us directly.</p>";
+
+  <!-- LIGHTBOX / FULLSCREEN GALLERY (global overlay) -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Project gallery">
+    <div class="lb-top">
+      <div class="lb-title">
+        <button class="icon-btn" id="lb-back" aria-label="Back to projects"><i class="fa-solid fa-arrow-left"></i></button>
+        <h4 id="lb-project">Project</h4>
+        <span class="lb-count" id="lb-count">1 / 1</span>
+      </div>
+      <div class="lb-actions">
+        <button class="icon-btn" id="lb-fit" aria-label="Toggle fit / fill"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+        <button class="icon-btn" id="lb-close" aria-label="Close gallery (Esc)"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="lb-stage" id="lb-stage">
+      <div class="slides" id="slides"></div>
+      <button class="nav-arrow nav-prev" id="prev" aria-label="Previous image (Left arrow)"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="nav-arrow nav-next" id="next" aria-label="Next image (Right arrow)"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="caption" id="caption"></div>
+      <div class="lb-dots" id="dots" aria-label="Slide indicators"></div>
+    </div>
+    <div class="thumbs" id="thumbs" aria-label="Gallery thumbnails"></div>
+  </div>
+
+<script>
+/* =======================
+   HELPERS (single source)
+   ======================= */
+const SUBTEXT   = { framing:'Framing', foundation:'Foundation', excavation:'Excavation' };
+const filterKey = (id, p) => (p.filter && p.filter.trim()) || (p.category && p.category.trim()) || id;
+const subtextOf = (id, p) => p.subtext ?? SUBTEXT[id] ?? (p.category || '');
+const isVideo   = (m) => !!m && (m.type === 'video' || m.video === true);
+const norm      = (p) => p ? p.replace(/\\/g,'/') : p;
+function updateVideoControlState(){
+  const activeSlide = slidesEl.querySelector('.slide.active');
+
+  // pause & hide controls on ALL non-active videos
+  slidesEl.querySelectorAll('video').forEach(v=>{
+    const isActive = !!activeSlide && activeSlide.contains(v);
+    if (!isActive) {
+      v.pause();
+      try { v.currentTime = 0; } catch(_) {}
+      v.removeAttribute('controls');
     }
+  });
+
+  // add controls + try autoplay muted on the ACTIVE video
+  const vid = activeSlide?.querySelector('video');
+  if (vid) {
+    vid.muted = true;
+    // re-assert a few times to beat any other toggles
+    const assert = () => vid.setAttribute('controls','');
+    assert(); requestAnimationFrame(assert); setTimeout(assert, 50);
+    const p = vid.play(); if (p?.catch) p.catch(()=>{});
+  }
+}
+
+/* keep controls stable for a short window after slide change */
+function enforceActiveVideoControls(duration=1500){
+  const start = Date.now();
+  const tick = () => {
+    updateVideoControlState();
+    if (Date.now() - start < duration) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+
+  /* ==========================================================
+     PROJECT DATA
+     - You can leave p.category '' — filtering falls back to the project id.
+     - To override the tile image, add p.cover: {src:'...', alt:'...'}
+     ========================================================== */
+  const PROJECTS = {
+    framing: {
+      title:'ROTUNDA HOUSE',
+      subtext: 'Structural',
+      category:'', // fine to leave empty
+  cover: { 
+    src: 'assets/framing/HousewithRotunda/IMG_2636.JPG', 
+    alt: 'Rotunda House' 
+  },
+  images: [
+    {src: 'assets/framing/HousewithRotunda/IMG_2636.JPG',  caption: 'Rotunda house framing streetview' },
+    { src: 'assets/framing/HousewithRotunda/IMG_2638.JPG', caption: 'Rotunda framing in progress' },
+    { src: 'assets/framing/HousewithRotunda/IMG_2639.JPG', caption: 'Roof framing detail' },
+    { src: 'assets/framing/HousewithRotunda/IMG_2640.JPG', caption: 'Rotunda roof detail' },
+    { src: 'assets/framing/HousewithRotunda/IMG_2641.JPG', caption: 'Framing detail' },
+    { src: 'assets/framing/HousewithRotunda/IMG_2643.JPG',  caption: 'Rear view of house framing' } 
+      ]
+    },
+BelaBuild: {
+  title: 'Addition at Bela Rd',
+  filter: 'framing',
+  subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/Bela/IMG_2416.jpg', 
+    alt: 'Rotunda House' 
+  },
+  images: [
+    { type:'video', src:'assets/framing/Bela/raftersBela-h264.MP4', poster:'assets/Logos/favicon.png', alt:'Framing walkthrough', caption:'Nailing & Blocking Rafters' },
+    { src: 'assets/framing/Bela/IMG_2416.jpg', caption: 'Setting Roof Beam' },
+  ]
+},
+rotundaHouse: {
+  title: '2 Story New Build',
+  filter: 'framing',
+  subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/houseDadIsOnRoof/IMG_2634.JPG', 
+    alt: 'Rotunda House' 
+  },
+  images: [
+    { src: 'assets/framing/houseDadIsOnRoof/IMG_2634.JPG', caption: 'Owner finishing roof fram details' },
+    { src: 'assets/framing/houseDadIsOnRoof/IMG_2635.JPG', caption: 'Owner verifying fascia angles' },
+    { src: 'assets/framing/houseDadIsOnRoof/IMG_2633.JPG', caption: 'Frontside frame' }
+  ]
+},
+finishedFronts: {
+  title: 'Finished Frame Frontsides',
+  filter: 'framing',
+  subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/RandomHouseFronts/JEOX6344.PNG', 
+    alt: 'Rotunda House' 
+  },
+  images: [
+    { src: 'assets/framing/RandomHouseFronts/JEOX6344.PNG', caption: '+3000 Sq ft. build' },
+    { src: 'assets/framing/RandomHouseFronts/img_2626.jpg', caption: 'Front profile of new single family build' },
+    { src: 'assets/framing/RandomHouseFronts/HMSW9850.jpg', caption: 'New build with modern roof' }
+  ]
+},
+
+VaultRoof: {
+  title: 'Vaulted Roof',
+  filter: 'framing',
+  subtext: 'Aesthetic + Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/vaultRoof/IMG_0106.JPG', 
+    alt: 'Addition & Rennovation' 
+  },
+  images: [
+    { src: 'assets/framing/vaultRoof/IMG_0106.JPG', caption: 'For your interior aesthetic needs' },
+    { src: 'assets/framing/vaultRoof/VUPCE7052.JPG', caption: 'Quality you can trust' }
+  ]
+},
+HouseWithBeam: {
+  title: 'Addition & Rennovation',
+  filter: 'framing',
+  subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/HouseWithBeam/IMG_2629.JPG', 
+    alt: 'Addition & Rennovation' 
+  },
+  images: [
+    { src: 'assets/framing/HouseWithBeam/IMG_2627.JPG', caption: 'Addition framing skeleton' },
+    { src: 'assets/framing/HouseWithBeam/IMG_2628.JPG', caption: 'Addition frame w/sheathing' },
+    { src: 'assets/framing/HouseWithBeam/IMG_2629.JPG', caption: 'Metal posts & beams for gazebo ' },
+    { src: 'assets/framing/HouseWithBeam/IMG_2631.JPG', caption: 'Interior framing skeleton' },
+    { src: 'assets/framing/HouseWithBeam/IMG_2630.JPG', caption: 'Rear framing w/sheathing' },
+    { src: 'assets/framing/HouseWithBeam/NJEK7307.WEBP', caption: 'Skylight frame' },
+    { src: 'assets/framing/HouseWithBeam/IMG_3848_HEIC.JPG', caption: 'Interior frame progressed' }  
+  
+  ]
+},
+Subfloor: {
+  title: 'Subfloor Frames',
+  filter: 'framing',
+  subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+  cover: { 
+    src: 'assets/framing/subfloor/IMG_3743.JPG', 
+  },
+  images: [
+    { src: 'assets/framing/subfloor/IMG_3743.JPG', caption: 'Subfloor joists waiting for insulation' },
+    { src: 'assets/framing/subfloor/framing1.JPG', caption: 'Subfloor plywood installed' },
+    { src: 'assets/framing/subfloor/IMG_5041.JPG', caption: 'Installing insulation' },
+    { src: 'assets/framing/subfloor/KAXQ2725.JPG', caption: 'Framing details for stable plumbing' },
+    { src: 'assets/framing/subfloor/YGIK2007.JPG', caption: 'More framing details for stable plumbing' }
+  ]
+},
+    
+tradFoundation: {
+      title:'Traditional Foundation',
+      filter: 'foundation',
+      subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+     cover: { 
+      src: 'assets/foundation/traditional/IMG_E4111.JPG', 
+      alt: 'Rotunda House' 
+                },
+      images:[
+        {src:'assets/foundation/traditional/img_4101.jpg', caption:'Prepping pier forms'},
+        {src:'assets/foundation/traditional/IMG_E4111.JPG', caption:'Forms ready for a pour'},
+        {src:'assets/foundation/traditional/img_2625.jpg', caption:'Concrete poured & waiting to cure'},
+        {src:'assets/foundation/traditional/img_2624.jpg', caption:'Pour drying on a new addition'},
+      ]
+    },
+
+slabFoundation: {
+      title:'Slab Foundation',
+      filter: 'foundation',
+      subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+     cover: { 
+      src: 'assets/foundation/slab/IMG_2508.JPG', 
+      alt: 'Rotunda House' 
+                },
+      images:[
+        {src:'assets/foundation/slab/IMG_2505.JPG', caption:'Aggregate, sand base, & rebar install'},
+        {src:'assets/foundation/slab/img_2508.jpg', caption:'Waterproofing & rebar done, ready for a pour'},
+      ]
+    },
+deckFoundation: {
+      title:'Deck Foundation',
+      filter: 'foundation',
+      subtext: 'Structural',
+  // Use a web path (forward slashes), relative to your HTML file:
+     cover: { 
+      src: 'assets/foundation/deck/RFXP4190.JPG', 
+      alt: 'Rotunda House' 
+                },
+      images:[
+        {src:'assets/foundation/deck/RFXP4190.JPG', caption:'Prepping deck piers for concrete'},
+        {src:'assets/foundation/deck/PQJR6106.jpg', caption:'Piers poured & deck subloor installed'},
+        {src:'assets/foundation/deck/QDXH7496.jpg', caption:'Just needs a cleanup, maybe a pergola?'},
+      ]
+    },
+Excavation: {
+      title:'Excavations',
+      filter: 'foundation',
+      subtext: 'Structural Prep',
+  // Use a web path (forward slashes), relative to your HTML file:
+     cover: { 
+      src: 'assets/excavation/img_2490.JPeG', 
+      alt: 'Rotunda House' 
+                },
+      images:[
+        {src:'assets/excavation/img_2490.jpeg', caption:'Not only digging out dirt!'},
+        {src:'assets/excavation/img_4073.jpg', caption:'Marking & squaring the lot'},
+      ]
+    },
+  };
+
+  /* ===== DOM cache ===== */
+const grid      = document.getElementById('grid');
+const lightbox  = document.getElementById('lightbox');
+const slidesEl  = document.getElementById('slides');
+const dotsEl    = document.getElementById('dots');
+const thumbsEl  = document.getElementById('thumbs');
+const captionEl = document.getElementById('caption');
+const titleEl   = document.getElementById('lb-project');
+const countEl   = document.getElementById('lb-count');
+const prevBtn   = document.getElementById('prev');
+const nextBtn   = document.getElementById('next');
+const closeBtn  = document.getElementById('lb-close');
+const backBtn   = document.getElementById('lb-back');
+const fitBtn    = document.getElementById('lb-fit');
+
+/* =======================
+   GRID (one tile/project)
+   ======================= */
+function renderGrid(category='all'){
+  if(!grid) return;
+  try{
+    grid.innerHTML = '';
+
+    const entries = Object.entries(PROJECTS)
+      .filter(([id,p]) => category === 'all' || filterKey(id,p) === category);
+
+    const cards = [];
+    for(const [id,p] of entries){
+      // choose cover: p.cover else first media
+      const cover = p.cover || (p.images && p.images[0]);
+      if(!cover) continue;
+
+      // resolve cover source (if cover is video, prefer its poster; else try a first image)
+      let coverSrc = isVideo(cover) ? (cover.poster || '') : cover.src;
+      if(isVideo(cover) && !coverSrc){
+        const firstImg = (p.images||[]).find(m => !isVideo(m) && m.src);
+        if(firstImg) coverSrc = firstImg.src;
+      }
+      if(!coverSrc) continue;
+
+      const card = document.createElement('article');
+      card.className   = `card will-animate ${filterKey(id,p)}`;
+      card.tabIndex    = 0;
+      card.role        = 'button';
+      card.ariaLabel   = `${p.title} — open gallery`;
+      card.dataset.project = id;
+      card.dataset.index   = 0;
+
+      card.innerHTML = `
+        <img loading="lazy" src="${norm(coverSrc)}" alt="${(cover.alt||p.title)||''}">
+        <div class="overlay">
+          <h3>${p.title}</h3>
+          <p>${subtextOf(id,p)}</p>
+        </div>
+        ${isVideo(cover) ? '<span class="play-badge"><i class="fa-solid fa-play"></i> Video</span>' : ''}
+      `;
+      grid.appendChild(card);
+      cards.push(card);
+    }
+
+    // reveal animation (safe if reduced motion)
+    const stagger = parseInt(getComputedStyle(document.documentElement)
+                     .getPropertyValue('--card-stagger')) || 0;
+    cards.forEach((c,i)=> setTimeout(()=> c.classList.add('show'), i*stagger));
+    setTimeout(()=> cards.forEach(c=> c.classList.add('show')), 1200);
+
+  }catch(err){
+    console.error('renderGrid() error:', err);
+  }
+}
+
+/* =======================
+   LIGHTBOX
+   ======================= */
+let activeProject = null;
+let activeIndex   = 0;
+
+function makeVideoHTML(media){
+  // support media.sources[] or single src
+  if(Array.isArray(media.sources) && media.sources.length){
+    const sources = media.sources.map(s => 
+      `<source src="${norm(s.src)}" type="${s.type||'video/mp4'}">`).join('');
+    return `<video controls playsinline preload="metadata" poster="${norm(media.poster||'')}">
+              ${sources}
+              Sorry, your browser doesn't support embedded videos.
+            </video>`;
+  }
+  return `<video controls playsinline preload="metadata" poster="${norm(media.poster||'')}">
+            <source src="${norm(media.src)}" type="video/mp4">
+            Sorry, your browser doesn't support embedded videos.
+          </video>`;
+}
+
+function openLightbox(projectKey, startIndex=0){
+  const project = PROJECTS[projectKey]; if(!project) return;
+  activeProject = projectKey;
+  activeIndex   = Math.max(0, Math.min(startIndex, project.images.length-1));
+
+  slidesEl.innerHTML=''; dotsEl.innerHTML=''; thumbsEl.innerHTML=''; captionEl.textContent='';
+  titleEl.textContent = project.title;
+
+  (project.images||[]).forEach((media,i)=>{
+    if(!media || !media.src) return;
+
+    // slide
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.innerHTML = isVideo(media)
+      ? makeVideoHTML(media)
+      : `<img loading="eager" src="${norm(media.src)}" alt="${media.alt || project.title}">`;
+    slidesEl.appendChild(slide);
+
+    // dot
+    const dot = document.createElement('button');
+    dot.className = 'dot';
+    dot.setAttribute('aria-label', `Go to item ${i+1}`);
+    dot.addEventListener('click', ()=> go(i));
+    dotsEl.appendChild(dot);
+
+    // thumb (use poster for video if present)
+    const th = document.createElement('button');
+    th.className = 'thumb';
+    th.innerHTML = `<img src="${norm(isVideo(media) ? (media.poster || media.src) : media.src)}" alt="Thumbnail ${i+1}">`;
+    th.addEventListener('click', ()=> go(i));
+    thumbsEl.appendChild(th);
+  });
+
+  document.body.classList.add('lb-open');
+  lightbox.setAttribute('aria-hidden','false');
+  lightbox.classList.add('fit-contain');
+  go(activeIndex);
+}
+
+function closeLightbox(){
+  slidesEl.querySelectorAll('video').forEach(v=>{
+    v.pause();
+    try{ v.currentTime = 0; }catch(_){}
+    v.removeAttribute('controls');
+  });
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.classList.remove('lb-open');
+  activeProject=null; activeIndex=0;
+  captionEl.textContent=''; slidesEl.innerHTML=''; dotsEl.innerHTML=''; thumbsEl.innerHTML='';
+}
+
+
+document.addEventListener('visibilitychange', ()=>{
+  if(document.hidden){
+    slidesEl.querySelectorAll('video').forEach(v=> v.pause());
+  }
+});
+
+
+function go(index){
+  const project = PROJECTS[activeProject]; if(!project) return;
+  const total = project.images.length; activeIndex = (index+total)%total;
+
+  // update active classes
+  Array.from(slidesEl.children).forEach((el,i)=> el.classList.toggle('active', i===activeIndex));
+  Array.from(dotsEl.children).forEach((el,i)=> el.classList.toggle('active', i===activeIndex));
+  Array.from(thumbsEl.children).forEach((el,i)=> el.classList.toggle('active', i===activeIndex));
+
+  // caption + counter
+  const item = project.images[activeIndex] || {};
+  captionEl.textContent = item.caption || '';
+  countEl.textContent   = `${activeIndex+1} / ${total}`;
+
+  // preload neighbor IMAGES (skip videos)
+  const preload = (i)=>{
+    const m = project.images[(i+total)%total];
+    if(m && !(m.type==='video'||m.video===true) && m.src){
+      const img = new Image(); img.src = m.src;
+    }
+  };
+  preload(activeIndex+1); preload(activeIndex-1);
+
+// ---- AUTO-PAUSE & CONTROLS (index-safe) ---
+slidesEl.querySelectorAll('video').forEach(v => {
+  const isActive = v.closest('.slide')?.classList.contains('active');
+  if (!isActive) {
+    v.pause();
+    try { v.currentTime = 0; } catch(_) {}
+    v.removeAttribute('controls');
+  }
+});
+
+ // Add controls + (optional) autoplay muted on the active slide's video
+const activeSlide = slidesEl.querySelector('.slide.active');
+const vid = activeSlide?.querySelector('video');
+if (vid) {
+  vid.setAttribute('controls','');   // user can pause & scrub
+  vid.muted = true;
+  const p = vid.play();
+  if (p?.catch) p.catch(()=>{});     // ignore autoplay blocks
+}
+// keep this at the END of go()
+updateVideoControlState();
+}
+
+
+
+/* =======================
+   WIRING
+   ======================= */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // initial render
+  renderGrid('all');
+
+  // filter buttons (use data-category on buttons)
+  const catBtns = document.querySelectorAll('.category-btn');
+  catBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      catBtns.forEach(b=>{ b.classList.add('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      renderGrid(btn.dataset.category || 'all');
+    });
+  });
+
+  // card click/keyboard
+  grid.addEventListener('click', (e)=>{
+    const card = e.target.closest('.card'); if(!card) return;
+    openLightbox(card.dataset.project, Number(card.dataset.index)||0);
+  });
+  grid.addEventListener('keydown',(e)=>{
+    if(e.key==='Enter'||e.key===' '){
+      const card=e.target.closest('.card'); if(card){
+        e.preventDefault(); openLightbox(card.dataset.project, Number(card.dataset.index)||0);
+      }
+    }
+  });
+
+  // controls
+  prevBtn.addEventListener('click',()=>go(activeIndex-1));
+  nextBtn.addEventListener('click',()=>go(activeIndex+1));
+  closeBtn.addEventListener('click', closeLightbox);
+  backBtn.addEventListener('click',  closeLightbox);
+  fitBtn.addEventListener('click', ()=> lightbox.classList.toggle('fit-contain'));
+fitBtn?.setAttribute('aria-pressed','true');
+fitBtn?.setAttribute('title','Fill screen');
+  // esc/arrow keys
+  window.addEventListener('keydown',(e)=>{
+    if(lightbox.getAttribute('aria-hidden')==='true') return;
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowRight') go(activeIndex+1);
+    if(e.key==='ArrowLeft')  go(activeIndex-1);
   });
 });
 </script>
+
 </body>
 </html>
