@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5 Brothers Best Construction</title>
-  <link rel="icon" type="image/png" href="D:\5BrosConst\5brosweb\assets\Logos\favicon.png" />
+  <link rel="icon" type="image/png" href="assets/Logos/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
@@ -32,14 +32,28 @@
     a{color:var(--primary);text-decoration:none}
     a:hover{color:var(--primary-600)}
 
-    /* Tinted fixed header (always expanded) */
-    header{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1200px,92%);height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-radius:18px;background:linear-gradient(180deg, var(--tint-top), var(--tint-bottom));backdrop-filter:blur(10px) saturate(140%);-webkit-backdrop-filter:blur(10px) saturate(140%);border:1px solid var(--tint-border);box-shadow:0 10px 30px rgba(16,24,40,.18);z-index:1000;overflow:hidden}
+/* Tinted fixed header (centered without transform) */
+header{
+  position: fixed;
+  top: 14px;
+  left: 0; right: 0;
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--tint-top), var(--tint-bottom));
+  backdrop-filter: blur(10px) saturate(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(140%);
+  border: 1px solid var(--tint-border);
+  box-shadow: 0 10px 30px rgba(16,24,40,.18);
+  z-index: 1000;
+}
+
     .header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
     .brand{display:flex;align-items:center;gap:10px}
     .brand img{height:60px;width:auto}
-    nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0;align-items:center}
-    nav a{color:#f8fafc;font-weight:700;opacity:.98;padding:10px 14px;border-radius:999px;display:inline-flex;align-items:center;line-height:1}
-    nav a:hover{opacity:1;background:rgba(255,255,255,.18)}
     .nav-right{display:flex;align-items:center;gap:14px}
     .nav-right .social{display:flex;gap:12px}
     .nav-right .social a{color:#f8fafc;opacity:.9;font-size:1.15rem}
@@ -151,6 +165,61 @@
 #plans-list { display:flex; flex-direction:column; gap:6px }
 #plans-list .file { padding:8px 10px; border:1px solid #e5e7eb; border-radius:10px; background:#fff }
 #plans-list .bad  { border-color:#ef4444; background:#fff5f5 }
+/* ===== Desktop-only nav styling (inside header) ===== */
+@media (min-width: 769px) {
+  .nav-toggle { display: none; } /* hide burger on desktop */
+  #site-header nav ul {
+    list-style: none; display: flex; gap: 18px;
+    margin: 0; padding: 0; align-items: center;
+  }
+  #site-header nav a {
+    color: #f8fafc; font-weight: 700; opacity: .98;
+    padding: 10px 14px; border-radius: 999px; display: inline-flex; align-items: center; line-height: 1;
+  }
+  #site-header nav a:hover { opacity: 1; background: rgba(255,255,255,.18); }
+}
+
+/* ===== Mobile: compact dropdown panel under header (same width as header) ===== */
+@media (max-width: 768px) {
+  #site-header { left: 0; right: 0; width: 100%; border-radius: 0; }
+
+  /* hidden by default */
+  #primary-nav { display: none; }
+
+  /* shown state: centered container under header */
+  #primary-nav.show {
+    display: block;
+    position: fixed;
+    top: 64px; /* header height on mobile */
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1200px, 92%);
+    z-index: 10000;
+    background: transparent;
+  }
+
+  /* the actual panel */
+  #primary-nav ul {
+    list-style: none; margin: 0; padding: 8px;
+    background: #fff; border: 1px solid #e5e7eb; border-radius: 14px;
+    box-shadow: 0 14px 38px rgba(16,24,40,.12);
+    display: flex; flex-direction: column; gap: 6px;
+    max-height: calc(100dvh - 64px - 20px); /* viewport below header */
+    overflow: auto; /* scroll inside if long */
+  }
+
+  #primary-nav a {
+    color: #0f172a; text-decoration: none;
+    display: block; padding: 12px 10px; font-size: 16px; border-radius: 10px;
+  }
+  #primary-nav a:hover { background: #f3f4f6; }
+
+  .nav-toggle { position: relative; z-index: 10001; }
+}
+
+/* lock background when menu open (keep one copy only) */
+.no-scroll { overflow: hidden; touch-action: none; }
+
 
   </style>
 </head>
@@ -161,27 +230,34 @@
   </div>
 
   <!-- Tinted Header -->
-  <header id="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#top" aria-label="Home"><img src="assets\Logos\logoWhite - Copy.PNG" alt="Logo" /></a>
-      <nav aria-label="Primary">
-        <!-- TWEAK: Add/remove nav links below -->
-        <ul>
-          <li><a href="#about">About & Services</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="nav-right">
-        <div class="social" aria-label="Social links">
-          <!-- TWEAK: Replace hrefs with real profiles -->
-          <a href="https://www.tiktok.com/@5brosbestcon" aria-label="Tiktok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="https://www.yelp.com/biz/5-brothers-best-construction-san-jose" aria-label="Yelp" target="_blank" rel="noopener"><i class="fa-brands fa-yelp"></i></a>
-          <a href="https://www.bizprofile.net/ca/san-jose/5-brothers-best-construction" aria-label="bizprofile" target="_blank" rel="noopener"><i class="fa-solid fa-check"></i></a>        
-        </div>
+
+
+<header id="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="Home">
+      <img src="assets/Logos/logoWhite - Copy.PNG" alt="Logo" />
+    </a>
+
+    <!-- Mobile-only toggle button -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">☰</button>
+
+    <nav id="primary-nav" aria-label="Primary" class="nav">
+      <ul>
+        <li><a href="#about">About &amp; Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-right">
+      <div class="social" aria-label="Social links">
+        <a href="https://www.tiktok.com/@5brosbestcon" aria-label="Tiktok" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://www.yelp.com/biz/5-brothers-best-construction-san-jose" aria-label="Yelp" target="_blank" rel="noopener"><i class="fa-brands fa-yelp"></i></a>
+        <a href="https://www.bizprofile.net/ca/san-jose/5-brothers-best-construction" aria-label="bizprofile" target="_blank" rel="noopener"><i class="fa-solid fa-check"></i></a>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
   <main>
     <!-- ABOUT + SERVICES -->
@@ -436,7 +512,7 @@ finishedFronts: {
   subtext: 'Structural',
   // Use a web path (forward slashes), relative to your HTML file:
   cover: { 
-    src: 'assets/framing/RandomHouseFronts/JEOX6344.png', 
+    src: 'assets/framing/RandomHouseFronts/JEOX6344.PNG', 
     alt: 'Frame Front Profiles' 
   },
   images: [
@@ -771,7 +847,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const catBtns = document.querySelectorAll('.category-btn');
   catBtns.forEach(btn=>{
     btn.addEventListener('click', ()=>{
-      catBtns.forEach(b=>{ b.classList.add('active'); b.setAttribute('aria-selected','false'); });
+      catBtns.forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
       btn.classList.add('active'); btn.setAttribute('aria-selected','true');
       renderGrid(btn.dataset.category || 'all');
     });
@@ -808,8 +884,31 @@ fitBtn?.setAttribute('title','Fill screen');
 });
 </script>
 
+<script>
+  (function () {
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('primary-nav');
+
+    function setOpen(open) {
+      nav.classList.toggle('show', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('no-scroll', open);
+    }
+
+    btn?.addEventListener('click', () => setOpen(!nav.classList.contains('show')));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('show')) setOpen(false);
+    });
+
+    nav?.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setOpen(false);
+    });
+  })();
+</script>
+
+
 </body>
 </html>
-
-
 
