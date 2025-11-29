@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="xY8h41eWhVSfx3-4SZqyxfRVF-1iKyGb9W3c67vWe28" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5 Brothers Best Construction</title>
@@ -221,6 +220,22 @@ header{
 /* lock background when menu open (keep one copy only) */
 .no-scroll { overflow: hidden; touch-action: none; }
 
+.embed-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9; /* or use padding hack */
+}
+
+.embed-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 
   </style>
 </head>
@@ -266,9 +281,10 @@ header{
       <div class="container"> 
         <div class="about-wrap">
           <article class="glass about-card">
-            <h1>"Not Just Better, But The Best"<br> Serving from SF/Oakland to South Bay/Santa Cruz and More!</h1>
+             <h1>"Not Just Better, But The Best"</h1> 
+             <h3> From SF/Oakland to South Bay/Santa Cruz and More!</h3>
             <p>With over 20 years of hands-on experience, we build and improve residential homes with care, efficiency, and clear communication. From window installs to full custom additions, we deliver work that lasts.</p>
-            <p>If you need a contractor or subcontractor for your project? Click our Contact tab or Email <a href="mailto:5brosbestcon@gmail.com">5brosbestcon@gmail.com</a> or call (408) 859-2320 or (408) 428-2473</p>
+            <p>If you need a contractor or subcontractor for your project? Click our Contact tab or Email <a href="mailto:5brosbestcon@gmail.com">5brosbestcon@gmail.com</a> or call/text (408) 859-2320 OR (408) 428-2473</p>
             <div class="owner">
               <img src='assets/Logos/IMG_3736-fixed.png' alt="Owner portrait" />
               <div>
@@ -313,6 +329,7 @@ header{
         <div class="section-title">
           <h2>Contact Us</h2>
           <p>We’re available for consultations and quotes on a contractor or subcontractor basis. Send a message with blueprints if possible, and we’ll respond promptly. We value your time.</p>
+          <h5>Or text/call us at (408) 859-2320 OR (408) 428-2473. Or email at <a href="mailto:5brosbestcon@gmail.com">5brosbestcon@gmail.com</a>.</h5>
         </div>
         <div class="contact-flex">
           <form action="https://formspree.io/f/xzzvvoye" method="POST" class="contact-form" enctype="multipart/form-data">
@@ -383,7 +400,6 @@ header{
       </div>
     </section>
   </main>
-<a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
   <footer>
     <p>© 5 Brothers Best Construction. LIC #1124900 Check our license on <a href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx" style="color:white; text-decoration: underline;">CSLB</a>. All rights reserved.</p>
   </footer>
@@ -419,6 +435,7 @@ const SUBTEXT   = { framing:'Framing', foundation:'Foundation', excavation:'Exca
 const filterKey = (id, p) => (p.filter && p.filter.trim()) || (p.category && p.category.trim()) || id;
 const subtextOf = (id, p) => p.subtext ?? SUBTEXT[id] ?? (p.category || '');
 const isVideo   = (m) => !!m && (m.type === 'video' || m.video === true);
+const isIframe = (m) => !!m && m.type === 'iframe';
 const norm      = (p) => p ? p.replace(/\\/g,'/') : p;
 function updateVideoControlState(){
   const activeSlide = slidesEl.querySelector('.slide.active');
@@ -478,6 +495,21 @@ function enforceActiveVideoControls(duration=1500){
     { src: 'assets/framing/HousewithRotunda/IMG_2643.JPG',  caption: 'Rear view of house framing' } 
       ]
     },
+
+SantaCruzPergola: {
+      title:'SantaCruzPergola',
+      subtext: 'Timelapse of Framing',
+      category:'', // fine to leave empty
+      filter: 'framing',
+  cover: { 
+    src: 'IMG_2878.jpeg', 
+    alt: 'Rotunda House' 
+  },
+  images: [
+    {type: "iframe", src:"https://www.youtube.com/embed/yiVAs8gAgTc?si=0LyDOSW1yYF96YI9",  caption: 'Rotunda house framing streetview' }
+  ]
+    },    
+
 BelaBuild: {
   title: 'Addition at Bela Rd',
   filter: 'framing',
@@ -488,7 +520,7 @@ BelaBuild: {
     alt: 'Addition at Bela' 
   },
   images: [
-    { type:'video', src:'assets/framing/Bela/raftersBela-h264.mp4', poster:'assets/Logos/favicon.png', alt:'Framing walkthrough', caption:'Nailing & Blocking Rafters' },
+    { type:'video', src:'assets/framing/Bela/raftersBela-h264.MP4', poster:'assets/Logos/favicon.png', alt:'Framing walkthrough', caption:'Nailing & Blocking Rafters' },
     { src: 'assets/framing/Bela/IMG_2416.jpg', caption: 'Setting Roof Beam' },
   ]
 },
@@ -513,7 +545,7 @@ finishedFronts: {
   subtext: 'Structural',
   // Use a web path (forward slashes), relative to your HTML file:
   cover: { 
-    src: 'assets/framing/RandomHouseFronts/JEOX6344.png', 
+    src: 'assets/framing/RandomHouseFronts/JEOX6344.PNG', 
     alt: 'Frame Front Profiles' 
   },
   images: [
@@ -552,7 +584,8 @@ HouseWithBeam: {
     { src: 'assets/framing/HouseWithBeam/IMG_2629.JPG', caption: 'Metal posts & beams for gazebo ' },
     { src: 'assets/framing/HouseWithBeam/IMG_2631.JPG', caption: 'Interior framing skeleton' },
     { src: 'assets/framing/HouseWithBeam/IMG_2630.JPG', caption: 'Rear framing w/sheathing' },
-    { src: 'assets/framing/HouseWithBeam/NJEK7307.WEBP', caption: 'Skylight frame' }
+    { src: 'assets/framing/HouseWithBeam/NJEK7307.WEBP', caption: 'Skylight frame' },
+    { src: 'assets/framing/HouseWithBeam/IMG_3848_HEIC.JPG', caption: 'Interior frame progressed' }  
   
   ]
 },
@@ -583,10 +616,10 @@ tradFoundation: {
       alt: 'Traditional Foundation' 
                 },
       images:[
-        {src:'assets/foundation/traditional/IMG_4101.JPG', caption:'Prepping pier forms'},
+        {src:'assets/foundation/traditional/img_4101.jpg', caption:'Prepping pier forms'},
         {src:'assets/foundation/traditional/IMG_E4111.JPG', caption:'Forms ready for a pour'},
-        {src:'assets/foundation/traditional/IMG_2625.JPG', caption:'Concrete poured & waiting to cure'},
-        {src:'assets/foundation/traditional/IMG_2624.JPG', caption:'Pour drying on a new addition'},
+        {src:'assets/foundation/traditional/img_2625.jpg', caption:'Concrete poured & waiting to cure'},
+        {src:'assets/foundation/traditional/img_2624.jpg', caption:'Pour drying on a new addition'},
       ]
     },
 
@@ -621,7 +654,7 @@ deckFoundation: {
     },
 Excavation: {
       title:'Excavations',
-      filter: 'excavation',
+      filter: 'foundation',
       subtext: 'Structural Prep',
   // Use a web path (forward slashes), relative to your HTML file:
      cover: { 
@@ -630,7 +663,7 @@ Excavation: {
                 },
       images:[
         {src:'assets/excavation/IMG_2490.jpeg', caption:'Not only digging out dirt!'},
-        {src:'assets/excavation/IMG_4073.JPG', caption:'Marking & squaring the lot'},
+        {src:'assets/excavation/img_4073.JPG', caption:'Marking & squaring the lot'},
       ]
     },
   };
@@ -742,9 +775,25 @@ function openLightbox(projectKey, startIndex=0){
     // slide
     const slide = document.createElement('div');
     slide.className = 'slide';
-    slide.innerHTML = isVideo(media)
-      ? makeVideoHTML(media)
-      : `<img loading="eager" src="${norm(media.src)}" alt="${media.alt || project.title}">`;
+   if (isVideo(media)) {
+  slide.innerHTML = makeVideoHTML(media);
+} else if (isIframe(media)) {
+  slide.innerHTML = `
+    <div class="embed-wrap">
+      <iframe
+        src="${media.src}"
+        title="${media.caption || project.title}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>`;
+} else {
+  slide.innerHTML = `
+    <img loading="eager"
+         src="${norm(media.src)}"
+         alt="${media.alt || project.title}">`;
+}
     slidesEl.appendChild(slide);
 
     // dot
@@ -757,7 +806,15 @@ function openLightbox(projectKey, startIndex=0){
     // thumb (use poster for video if present)
     const th = document.createElement('button');
     th.className = 'thumb';
-    th.innerHTML = `<img src="${norm(isVideo(media) ? (media.poster || media.src) : media.src)}" alt="Thumbnail ${i+1}">`;
+   let thumbSrc = media.src;
+if (isVideo(media)) {
+  thumbSrc = media.poster || media.src;
+}
+if (isIframe(media) && media.thumb) {
+  thumbSrc = media.thumb; // optional thumbnail you define
+}
+
+th.innerHTML = `<img src="${norm(thumbSrc)}" alt="Thumbnail ${i+1}">`;
     th.addEventListener('click', ()=> go(i));
     thumbsEl.appendChild(th);
   });
@@ -911,10 +968,4 @@ fitBtn?.setAttribute('title','Fill screen');
 
 </body>
 </html>
-
-
-
-
-
-
 
